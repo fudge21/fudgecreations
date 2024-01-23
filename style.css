@@ -7,15 +7,20 @@
 #header {
     background-color: rgb(14, 14, 14);
     padding: 5px;
+    height: 40px;
 }
 #header button {
     transition-duration: 250ms;
     padding: 5px;
     border-radius: 5px;
-    font-size: 2vmax;
+    /*font-size: 2vmax;*/
     border-style: none;
     background-color: transparent;
     color: white;
+    font-size: 2em;
+    line-height: 1em;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 #header button:hover {
     background-color: rgb(81, 81, 81);

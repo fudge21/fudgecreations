@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
+
 * {
     margin: 0px;
     padding: 0px;
     transition-duration: 250ms;
+    font-family: "Plus Jakarta Sans", sans-serif;
 }
 
 #header {
     background-color: rebeccapurple;
     padding: 5px;
-    max-height: 45px;
+    max-height: 40px;
     
 }
 #header button {
@@ -18,8 +21,8 @@
     border-style: none;
     background-color: transparent;
     color: rgb(233, 231, 231);
-    font-size: 2vw;
-    line-height: 1em;
+    font-size: 40px;
+    line-height: 0em;
     margin-left: 5px;
     margin-right: 5px;
     max-height: 40px;
@@ -70,5 +73,10 @@
     bottom: 2%;
     right: 1%;
     font-size: 1.5vmax;
-     text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+    text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, 1px 1px 0 #ffffff;
+}
+
+
+#logoText {
+    font-size: 7vw;
 }

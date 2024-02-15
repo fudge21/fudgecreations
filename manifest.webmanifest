@@ -1,0 +1,20 @@
+{
+  "name": "Fudge Creations",
+  "short_name": "Fudge Creations",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "The best website ever",
+  "icons": [
+    {
+      "src": "./images/FudgeCreations.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./images/FudgeCreations.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

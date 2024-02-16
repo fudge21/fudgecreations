@@ -1,0 +1,98 @@
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8">
+        <title>Tripple ❌</title>
+      <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1024px-Red_X.svg.png">
+        <style>
+          body {
+    background-color: rgb(246, 254, 255);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+    font-size: larger;
+}
+
+#win {
+    display: none;
+}
+
+#game {
+    display: block;
+}
+      </style>
+    </head>
+    <body>
+        <a herf="#"><button id="Back">Back 🔙</button></a>
+        <h1>Tripple ❌</h1>
+        <div id="game">
+            <p id="level">You are breaking into a level 1 bank...</p>
+            <p>You need to enter the right 3 digit code to continue</p>
+            <p>The bank has high security so be careful!</p>
+
+            <p>- there are 3 numbers in the code</p>
+            <p id="add">- the codes add up to: </p>
+            <p id="multiply">- and multiplied to make: </p>
+
+            <input type="number" id="answer1">
+            <input type="number" id="answer2">
+            <input type="number" id="answer3">
+            <button id="submit" onclick="Answer()">Submit</button>
+            <p id="response"></p>
+        </div>
+        <div id="win">
+            <H1>YOU WIN!</H1>
+            <H3>***You got the gold! Hope you enjoyed my Game!***</H3>
+        </div>
+        
+    </body>
+    <script>
+var LevelReadout = document.getElementById("level")
+var AddReadout = document.getElementById("add")
+var MultiplyReadout = document.getElementById("multiply")
+var ResponseReadout = document.getElementById("response")
+
+var Difficulty = 1
+var MaxDificulty = 5
+
+var CodeSum = 0
+var CodeProduct = 0
+
+function Run() {
+    var CodeA = Math.floor(Math.random() * 100) % Difficulty +Difficulty; 
+    var CodeB = Math.floor(Math.random() * 100) % Difficulty +Difficulty;
+    var CodeC = Math.floor(Math.random() * 100) % Difficulty +Difficulty;
+
+    CodeSum = CodeA + CodeB + CodeC; 
+    CodeProduct = CodeA * CodeB * CodeC; 
+
+    LevelReadout.textContent = "You are breaking into a level "+Difficulty+" bank..."
+    AddReadout.textContent = "- the codes add up to: "+CodeSum
+    MultiplyReadout.textContent = "- and multiplyed to make: "+CodeProduct
+}
+
+function Answer() {
+    if (document.getElementById("answer1").value*document.getElementById("answer2").value*document.getElementById("answer3").value == CodeProduct && Number(document.getElementById("answer1").value)+Number(document.getElementById("answer2").value)+Number(document.getElementById("answer3").value) == CodeSum) {
+        document.getElementById("answer1").value = null
+        document.getElementById("answer2").value = null
+        document.getElementById("answer3").value = null
+        Difficulty+=1
+        if (Difficulty == MaxDificulty+1) {
+            document.getElementById("game").style.display = "none"
+            document.getElementById("win").style.display = "block"
+        } else {
+            Run()
+            ResponseReadout.textContent = "You entered the code and opened the door to the next room. Hurry before they find you!"
+        }
+        
+    } else {
+        document.getElementById("answer1").value = null
+        document.getElementById("answer2").value = null
+        document.getElementById("answer3").value = null
+        Run()
+        ResponseReadout.textContent = "You trip and fall and try again. you better be careful."
+    }
+}
+
+Run()
+
+    </script>
+</html>

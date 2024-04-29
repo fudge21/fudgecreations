@@ -9,6 +9,11 @@
         display: none;
     }
 }
+@media only screen and (min-width : 481px) {
+    #hamburgerButtons {
+        display: none !important;
+    }
+}
 @media only screen and (max-width : 768px) {
     #header button {
         font-size: 20px !important;

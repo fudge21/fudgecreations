@@ -5,6 +5,7 @@
   "display": "standalone",
   "background_color": "#fff",
   "description": "The best website ever",
+  "theme_color": "rebeccapurple",
   "icons": [
     {
       "src": "./images/FudgeCreations.png", 

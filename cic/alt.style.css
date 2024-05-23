@@ -1,0 +1,12 @@
+@import url(../style.css);
+
+#header {
+    background-color: #B4DBF9;
+}
+
+#hamburgerButtons {
+    background-color: #B4DBF9;
+}
+#header button, #hamburgerButtons button {
+    color: black;
+}

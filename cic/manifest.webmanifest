@@ -1,0 +1,21 @@
+{
+  "name": "Clip It Creations",
+  "short_name": "Clip It Creations",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "The best game studio ever",
+  "theme_color": "#B4DBF9",
+  "icons": [
+    {
+      "src": "../Roblox/clipitcreations.png", 
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "../Roblox/clipitcreations.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

@@ -130,12 +130,18 @@ p {
     justify-content: center;
     display: flex;
     display: -webkit-flex;
+    flex-wrap: wrap;
 }
 .item {
     height: 120px;
     width: 100px;
     display: inline-block;
-    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.item:hover {
+    background-color: lightgray;
+    cursor: pointer;
 }
 
 .item p {

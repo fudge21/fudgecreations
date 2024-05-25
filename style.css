@@ -127,6 +127,8 @@ p {
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 10px;
+    justify-content: center;
+    display: flex;
 }
 .item {
     height: 120px;
@@ -142,4 +144,5 @@ p {
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    margin: 0;
 }

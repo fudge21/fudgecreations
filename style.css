@@ -118,3 +118,28 @@ p {
 #hamburger {
     display: none;
 }
+
+.list {
+    padding: 5px;
+    background-color: rgb(235, 235, 235);
+    min-width: 10px;
+    min-height: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+.item {
+    height: 120px;
+    width: 100px;
+    display: inline-block;
+    margin: 5px;
+}
+
+.item p {
+    float: left;
+    text-align: center;
+    width: 100px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

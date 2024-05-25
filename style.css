@@ -153,3 +153,32 @@ p {
     overflow: hidden;
     margin: 0;
 }
+
+.social {
+    padding: 5px;
+    background-color: rgb(235, 235, 235);
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    width: fit-content;
+    border-radius: 10px;
+}
+.social a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 100px;
+    display: inline-block;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    background-color: #ffffff;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent;
+}
+.social a:hover {
+    border-color: grey;
+}

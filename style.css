@@ -38,6 +38,8 @@ p {
     padding: 5px;
     min-height: 20px;
     position: sticky;
+    position: -webkit-sticky;
+    top: 0;
 }
 #hamburgerButtons {
     background-color: rebeccapurple;

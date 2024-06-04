@@ -12,7 +12,7 @@ Notification.requestPermission().then(perm => {
 })
 */
 
-var hamburgerButtons = document.querySelector("#hamburgerButtons")
+let hamburgerButtons = document.querySelector("#hamburgerButtons")
 document.querySelector("#hamburger").addEventListener("click", function () {
     if (hamburgerButtons.style.display == "none" || hamburgerButtons.style.display == "") {
         hamburgerButtons.style.display = "block"
@@ -20,3 +20,15 @@ document.querySelector("#hamburger").addEventListener("click", function () {
         hamburgerButtons.style.display = "none"
     }
 })
+
+let listItems = document.querySelectorAll(".item")
+
+for (let index = 0; index < listItems.length; index++) {
+    const item = listItems[index];
+    let value = item.getAttribute("redirect-url")
+    if (value != null && value != "") {
+        item.addEventListener("click", function () {
+            window.location.href = value
+        })
+    }
+}

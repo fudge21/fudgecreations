@@ -145,6 +145,9 @@ p {
     background-color: lightgray;
     cursor: pointer;
 }
+.item img {
+    width: 100px;
+}
 
 .item p {
     float: left;

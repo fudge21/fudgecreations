@@ -28,6 +28,6 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add backend.js
           git commit -m "Inject Firebase API Key"
-          git push origin main
+          git push https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}.git main
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PAT: ${{ secrets.PAT }}

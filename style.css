@@ -195,3 +195,70 @@ button:hover {
 .social a:hover {
     border-color: grey;
 }
+
+input {
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border-color: black;
+    border-style: solid;
+    font-size: auto;
+    text-overflow: ellipsis;
+}
+
+input:hover, input:focus {
+    border-color: gray;
+}
+
+.sign-in .center {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-flow: column;
+}
+
+.sign-in input {
+    margin: 5px;
+    width: 40%;
+}
+
+.sign-in .center button {
+    margin: 5px;
+    width: 40%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border-color: black;
+    border-style: solid;
+    font-size: auto;
+}
+
+#github {
+    background-image: url(https://cdn-icons-png.flaticon.com/512/25/25231.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#google {
+    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+#go {
+    background-color: rgb(23, 176, 23);
+}
+
+
+.sign-in .center p {
+    text-align: center;
+    font-size: 20px;
+}
+
+
+.sign-in button:hover {
+    border-color: gray;
+}
+

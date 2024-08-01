@@ -9,7 +9,7 @@ import { GoogleAuthProvider, getAuth,signInWithRedirect, GithubAuthProvider, sig
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: window.FIREBASEAPIKEY,
+  apiKey: "AIzaSyAzjNenZXk2gKXSu-6B6uW9DlpdoP06RUc",
   authDomain: "fudge-creations.firebaseapp.com",
   projectId: "fudge-creations",
   storageBucket: "fudge-creations.appspot.com",

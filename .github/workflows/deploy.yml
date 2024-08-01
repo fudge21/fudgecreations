@@ -5,6 +5,9 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write  # Allows the workflow to push changes to the repository
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest

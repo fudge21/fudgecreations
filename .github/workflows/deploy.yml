@@ -13,7 +13,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and Inject API Key
+      - name: Set Permissions
+        run: chmod +w /backend.js
+
+      - name: Inject API Key
         run: |
           echo "window.FIREBASEAPIKEY = '${{ secrets.FIREBASEAPIKEY }}';" > /backend.js
         env:
@@ -23,4 +26,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: /

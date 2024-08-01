@@ -37,6 +37,10 @@ p {
     width: 90%;
 }
 
+button:hover {
+    cursor: pointer;
+}
+
 #header {
     background-color: rebeccapurple;
     padding: 5px;

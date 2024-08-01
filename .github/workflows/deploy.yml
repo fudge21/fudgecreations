@@ -14,11 +14,11 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set Permissions
-        run: chmod +w /backend.js
+        run: chmod +w backend.js
 
       - name: Inject API Key
         run: |
-          echo "window.FIREBASEAPIKEY = '${{ secrets.FIREBASEAPIKEY }}';" > /backend.js
+          echo "window.FIREBASEAPIKEY = '${{ secrets.FIREBASEAPIKEY }}';" > backend.js
         env:
           FIREBASEAPIKEY: ${{ secrets.FIREBASEAPIKEY }}
 

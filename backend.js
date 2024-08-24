@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 import { getFirestore,  collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { GoogleAuthProvider, getAuth,signInWithRedirect, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { GoogleAuthProvider, getAuth,signInWithRedirect, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -29,6 +29,31 @@ const auth = getAuth();
 
 auth.useDeviceLanguage()
 
+function signInOrSignUp(email, password) {
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Successfully signed in
+      const user = userCredential.user;
+    })
+    .catch((error) => {
+      if (error.code === 'auth/user-not-found') {
+        // User doesn't exist, so create a new account
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            // Successfully created a new account
+            const user = userCredential.user;
+          })
+          .catch((signUpError) => {
+            // Handle errors during account creation
+            console.error("Error creating account:", signUpError);
+          });
+      } else {
+        // Handle other sign-in errors
+        console.error("Error signing in:", error);
+      }
+    });
+}
+
 document.querySelector("#google").addEventListener("click", function () {
   signInWithRedirect(auth, googleProvider)
 })
@@ -38,18 +63,19 @@ document.querySelector("#github").addEventListener("click", function () {
 })
 
 document.querySelector("#go").addEventListener("click", function () {
-  signInWithEmailAndPassword(auth, document.querySelector("#email").Value, document.querySelector("#password").Value)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-    window.location.location = "/"
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+  signInOrSignUp(document.querySelector("#email").value, document.querySelector("#password").value)
+  // createUserWithEmailAndPassword(auth, document.querySelector("#email").value, document.querySelector("#password").value)
+  // .then((userCredential) => {
+  //   // Signed up 
+  //   const user = userCredential.user;
+  //   // ...
+  //   // window.location.location = "/"
+  // })
+  // .catch((error) => {
+  //   const errorCode = error.code;
+  //   const errorMessage = error.message;
+  //   // ..
+  // });
 })
 
 // try {

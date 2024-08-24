@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 import { getFirestore,  collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { GoogleAuthProvider, getAuth,signInWithRedirect, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { GoogleAuthProvider, getAuth, signOut, onAuthStateChanged, signInWithRedirect, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -54,29 +54,27 @@ function signInOrSignUp(email, password) {
     });
 }
 
-document.querySelector("#google").addEventListener("click", function () {
-  signInWithRedirect(auth, googleProvider)
-})
+if (window.location.pathname == "/auth/") {
+  document.querySelector("#google").addEventListener("click", function () {
+    signInWithRedirect(auth, googleProvider)
+  })
 
-document.querySelector("#github").addEventListener("click", function () {
-  signInWithRedirect(auth, githubProvider)
-})
+  document.querySelector("#github").addEventListener("click", function () {
+    signInWithRedirect(auth, githubProvider)
+  })
 
-document.querySelector("#go").addEventListener("click", function () {
-  signInOrSignUp(document.querySelector("#email").value, document.querySelector("#password").value)
-  // createUserWithEmailAndPassword(auth, document.querySelector("#email").value, document.querySelector("#password").value)
-  // .then((userCredential) => {
-  //   // Signed up 
-  //   const user = userCredential.user;
-  //   // ...
-  //   // window.location.location = "/"
-  // })
-  // .catch((error) => {
-  //   const errorCode = error.code;
-  //   const errorMessage = error.message;
-  //   // ..
-  // });
-})
+  document.querySelector("#go").addEventListener("click", function () {
+    signInOrSignUp(document.querySelector("#email").value, document.querySelector("#password").value)
+  })
+}
+
+if (window.location.pathname == "/settings/") {
+  document.querySelector("#signOut").addEventListener("click", function () {
+    signOut(auth)
+  })
+}
+
+
 
 // try {
 //   const docRef = await addDoc(collection(db, "users"), {
@@ -86,3 +84,23 @@ document.querySelector("#go").addEventListener("click", function () {
 // } catch (e) {
 //   console.error("Error creating document: ",e)
 // }
+
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    
+    if (window.location.pathname == "/auth/") {
+      window.location.href = "/"
+    }
+    if (document.querySelector('a[href="/auth/"]').querySelector('button')) {
+      document.querySelector('a[href="/auth/"]').querySelector('button').textContent = "Settings"
+      document.querySelector('a[href="/auth/"]').href = "/settings/"
+    }
+  } else {
+    // No user is signed in
+    console.log("No user is signed in.");
+    if (window.location.pathname != "/auth/") {
+      window.location.href = "/auth/"
+    }
+  }
+});

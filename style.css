@@ -8,6 +8,9 @@
     #mainButtons {
         display: none;
     }
+    #inputBox {
+        aspect-ratio: 1/2 !important;
+    }
 }
 @media only screen and (min-width : 481px) {
     #hamburgerButtons {
@@ -37,8 +40,19 @@ p {
     width: 90%;
 }
 
+button {
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border-color: black;
+    border-style: solid;
+    font-size: auto;
+    text-overflow: ellipsis;
+}
+
 button:hover {
     cursor: pointer;
+    border-color: gray;
 }
 
 #header {
@@ -262,3 +276,29 @@ input:hover, input:focus {
     border-color: gray;
 }
 
+#inputBox {
+    width: 60%;
+    aspect-ratio: 2/1;
+    background-color: rgb(218, 218, 218);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    border-color: rebeccapurple;
+    border-width: 3px;
+    border-style: solid;
+    text-align: center;
+    max-width: 650px;
+    display: none;
+}
+
+#inputBox p {
+    height: 70%;
+    width: 100%;
+    font-size: 25px;
+    overflow-y: scroll;
+}
+.center {
+    text-align: center;
+}

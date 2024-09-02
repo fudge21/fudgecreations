@@ -2,7 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
 import { getFirestore,  collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { GoogleAuthProvider, getAuth, signOut, onAuthStateChanged, signInWithRedirect, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { GoogleAuthProvider, getAuth, signOut, getRedirectResult, onAuthStateChanged, signInWithRedirect, signInWithPopup, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -56,11 +56,13 @@ function signInOrSignUp(email, password) {
 
 if (window.location.pathname == "/auth/") {
   document.querySelector("#google").addEventListener("click", function () {
-    signInWithRedirect(auth, googleProvider)
+    // signInWithRedirect(auth, googleProvider)
+    signInWithPopup(auth, googleProvider)
   })
 
   document.querySelector("#github").addEventListener("click", function () {
-    signInWithRedirect(auth, githubProvider)
+    // signInWithRedirect(auth, githubProvider)
+    signInWithPopup(auth, githubProvider)
   })
 
   document.querySelector("#go").addEventListener("click", function () {
@@ -104,3 +106,4 @@ onAuthStateChanged(auth, (user) => {
     }
   }
 });
+

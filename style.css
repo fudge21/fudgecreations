@@ -235,30 +235,41 @@ input:hover, input:focus {
 
 .sign-in input {
     margin: 5px;
-    width: 40%;
+    width: clamp(10px, 90%,500px);
+    color: black;
+    padding: 10px;
+    font-size: 20px;
 }
 
 .sign-in .center button {
     margin: 5px;
-    width: 40%;
+    width: clamp(10px, 90%,500px);
     padding: 10px;
     border-radius: 10px;
     outline: none;
     border-color: black;
     border-style: solid;
     font-size: auto;
+    color: black;
+    font-size: 20px;
 }
-
-#github {
-    background-image: url(https://cdn-icons-png.flaticon.com/512/25/25231.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+.sign-in .center button img {
+    margin: 5px;
+    width: 10%;
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border-color: black;
+    border-style: solid;
+    font-size: auto;
+    color: black;
+    float: left;
 }
-
-#google {
-    background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png);
-    background-size: contain;
-    background-repeat: no-repeat;
+.sign-in .center button p {
+    width: 80%;
+    float: right;
+    height: 100%;
+    line-height: 400%;
 }
 
 #go {
@@ -271,8 +282,7 @@ input:hover, input:focus {
     font-size: 20px;
 }
 
-
-.sign-in button:hover {
+.sign-in button:hover,.sign-in input:hover {
     border-color: gray;
 }
 
@@ -301,4 +311,16 @@ input:hover, input:focus {
 }
 .center {
     text-align: center;
+}
+
+#glow {
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    aspect-ratio: 1/1;
+    background-image: radial-gradient(rebeccapurple,transparent,transparent);
+    background-size: 300% 200%;
+    background-position: top;
+    position: fixed;
+    z-index: -5;
 }

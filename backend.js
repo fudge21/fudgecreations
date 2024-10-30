@@ -92,7 +92,9 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     
     if (window.location.pathname == "/auth/") {
-      window.location.href = "/"
+      setInterval(() => {
+        window.location.href = "/"
+      }, 100);
     }
     if (document.querySelector('a[href="/auth/"]').querySelector('button')) {
       document.querySelector('a[href="/auth/"]').querySelector('button').textContent = "Settings"
@@ -100,10 +102,10 @@ onAuthStateChanged(auth, (user) => {
     }
   } else {
     // No user is signed in
-    console.log("No user is signed in.");
-    if (window.location.pathname != "/auth/") {
-      window.location.href = "/auth/"
-    }
+    // console.log("No user is signed in.");
+    // if (window.location.pathname != "/auth/") {
+    //   window.location.href = "/auth/"
+    // }
   }
 });
 

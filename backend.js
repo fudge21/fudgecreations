@@ -68,11 +68,16 @@ if (window.location.pathname == "/auth/") {
   document.querySelector("#go").addEventListener("click", function () {
     signInOrSignUp(document.querySelector("#email").value, document.querySelector("#password").value)
   })
+  
+  document.querySelector("#next").addEventListener("click", function () {
+    window.location.href = "/"
+  })
 }
 
 if (window.location.pathname == "/settings/") {
   document.querySelector("#signOut").addEventListener("click", function () {
     signOut(auth)
+    window.location.href = "/"
   })
 }
 
@@ -92,9 +97,11 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     
     if (window.location.pathname == "/auth/") {
-      setInterval(() => {
-        window.location.href = "/"
-      }, 100);
+      document.querySelector("#signin").style.display = "none"
+      document.querySelector("#userinfo").style.display = "block"
+      // setInterval(() => {
+      //   window.location.href = "/"
+      // }, 100);
     }
     if (document.querySelector('a[href="/auth/"]').querySelector('button')) {
       document.querySelector('a[href="/auth/"]').querySelector('button').textContent = "Settings"

@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script type="module" src="/backend.js"></script>
     <link rel="manifest" href="/manifest.webmanifest">
 </head>
+
 <body class="sign-in">
     <div id="header">
         <button id="hamburger">+</button>
@@ -19,19 +21,35 @@
     <span id="hamburgerButtons">
         <button>Home</button>
     </span>
-    <div id="alert">This sign in feature is new. Please report any issues to <a href="mailto:fudgecreations.com@gmail.com">fudgecreations.com@gmail.com</a>.</div>
-    <h1 id="logoText">Sign into Fudge Creations</h1>
-    <p style="text-align: center; font-size: 30px;">Welcome to the future of the internet, where <strong>signing up and loging in are combined into SIGN IN.</strong></p>
-    <br><br><br><br>
-    <p></p>
-    <div class="center">
+    <div id="alert">This sign in feature is new. Please report any issues to <a
+            href="mailto:fudgecreations.com@gmail.com">fudgecreations.com@gmail.com</a>.</div>
+    <div class="center" id="signin">
+        <h1 id="logoText">Sign into Fudge Creations</h1>
+        <p style="text-align: center; font-size: 30px;">Welcome to the future of the internet, where <strong>signing up
+                and
+                loging in are combined into SIGN IN.</strong></p>
+        <br><br><br><br>
         <input type="email" placeholder="E-Mail" id="email">
         <input type="password" placeholder="Password" id="password">
         <button id="go">Sign In</button>
         <p>-OR-</p>
-        <button id="google"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png" alt=""><p>Sign in with Google</p></button>
-        <button id="github"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt=""><p>Sign in with GitHub</p></button>
+        <button id="google"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/480px-Google_%22G%22_logo.svg.png"
+                alt="">
+            <p>Sign in with Google</p>
+        </button>
+        <button id="github"><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="">
+            <p>Sign in with GitHub</p>
+        </button>
+    </div>
+    <div class="center" id="userinfo">
+        <h1 id="logoText">Complete the sign up</h1>
+        <br><br><br><br>
+        <input type="text" placeholder="Username" id="username"><br>
+        <input type="text" placeholder="Displayname" id="displayname"><br>
+        <button id="next">Next</button>
     </div>
     <div id="glow"></div>
 </body>
+
 </html>

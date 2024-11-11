@@ -285,7 +285,7 @@ input:hover, input:focus {
     line-height: 400%;
 }
 
-#go {
+#go, #next {
     background-color: rgb(23, 176, 23);
 }
 
@@ -343,4 +343,7 @@ footer {
     height: 100px;
     bottom: 0;
     position: fixed;
+}
+#userinfo {
+    display: none;
 }

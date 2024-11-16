@@ -16,6 +16,9 @@ const firebaseConfig = {
   messagingSenderId: "949875472904",
   appId: "1:949875472904:web:65df5a963f56b0185a6fbd",
   measurementId: "G-EV3NG45468",
+  cookies: {
+    domain: '.fudgecreations.com',
+  },
 };
 
 // Initialize Firebase
@@ -68,10 +71,10 @@ if (window.location.pathname == "/auth/") {
   document.querySelector("#go").addEventListener("click", function () {
     signInOrSignUp(document.querySelector("#email").value, document.querySelector("#password").value)
   })
-  
-  document.querySelector("#next").addEventListener("click", function () {
-    window.location.href = "/"
-  })
+
+  // document.querySelector("#next").addEventListener("click", function () {
+  //   window.location.href = "/"
+  // })
 }
 
 if (window.location.pathname == "/settings/") {
@@ -81,6 +84,26 @@ if (window.location.pathname == "/settings/") {
   })
 }
 
+function verifyUsername() {
+  const regex = /^[a-z0-9_]+$/;
+  let username = document.querySelector("#username").value
+  let feedback = "Requirements met"
+  if (username.length < 3) {
+    feedback = "Must include at least 3 characters"
+  } else if (username.length > 12) {
+    feedback = "Cannot include more than 12 characters"
+  } else if (!regex.test(username)) {
+    feedback = "Only letters and numbers are supported in usernames"
+  } else {
+    return true
+  }
+  document.querySelector("#feedback").textContent = feedback
+  return false
+}
+
+document.querySelector("#next").addEventListener("click", function () {
+  verifyUsername()
+})
 
 
 // try {

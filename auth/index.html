@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/images/FudgeCreations.png" type="image/x-icon">
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
-    <script type="module" src="/backend.js"></script>
+    <script type="module" src="/backend.js" defer></script>
     <link rel="manifest" href="/manifest.webmanifest">
 </head>
 
@@ -45,9 +45,10 @@
     <div class="center" id="userinfo">
         <h1 id="logoText">Complete the sign up</h1>
         <br><br><br><br>
-        <input type="text" placeholder="Username" id="username"><br>
+        <input type="text" placeholder="Username" id="username" maxlength="12"><br>
         <input type="text" placeholder="Displayname" id="displayname"><br>
         <button id="next">Next</button>
+        <p id="feedback" style="color: red;"></p>
     </div>
     <div id="glow"></div>
 </body>

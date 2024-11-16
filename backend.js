@@ -89,11 +89,28 @@ function verifyUsername() {
   let username = document.querySelector("#username").value
   let feedback = "Requirements met"
   if (username.length < 3) {
-    feedback = "Must include at least 3 characters"
+    feedback = "Must include at least 3 characters in username"
   } else if (username.length > 12) {
-    feedback = "Cannot include more than 12 characters"
+    feedback = "Cannot include more than 12 characters in username"
   } else if (!regex.test(username)) {
-    feedback = "Only letters and numbers are supported in usernames"
+    feedback = "Only lowercase letters and numbers and underscores are supported in usernames"
+  } else {
+    return true
+  }
+  document.querySelector("#feedback").textContent = feedback
+  return false
+}
+
+function verifyDisplayName() {
+  const regex = /^[a-zA-Z0-9_ ]+$/;
+  let username = document.querySelector("#username").value
+  let feedback = "Requirements met"
+  if (username.length < 3) {
+    feedback = "Must include at least 3 characters in display name"
+  } else if (username.length > 12) {
+    feedback = "Cannot include more than 12 characters in display name"
+  } else if (!regex.test(username)) {
+    feedback = "Only letters, numbers, underscores, and spaces are supported in display names"
   } else {
     return true
   }

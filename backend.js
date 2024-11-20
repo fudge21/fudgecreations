@@ -98,6 +98,7 @@ async function verifyUsername() {
   } else if (moderatedText[1]) {
     feedback = "Username cannot contain profanity"
   } else {
+    document.querySelector("#feedback").textContent = feedback
     return true
   }
   document.querySelector("#feedback").textContent = feedback
@@ -106,7 +107,7 @@ async function verifyUsername() {
 
 async function verifyDisplayName() {
   const regex = /^[a-zA-Z0-9_ ]+$/;
-  const username = document.querySelector("#username").value
+  const username = document.querySelector("#displayname").value
   const moderatedText = await moderateText(username)
   let feedback = "Requirements met"
   if (username.length < 3) {
@@ -118,14 +119,19 @@ async function verifyDisplayName() {
   } else if (moderatedText[1]) {
     feedback = "Display name cannot contain profanity"
   } else {
+    document.querySelector("#feedback").textContent = feedback
     return true
   }
   document.querySelector("#feedback").textContent = feedback
   return false
 }
 
-document.querySelector("#next").addEventListener("click", function () {
-  verifyUsername()
+document.querySelector("#next").addEventListener("click", async function () {
+  if (await verifyUsername() == true) {
+    if (await verifyDisplayName() == true) {
+      
+    }
+  }
 })
 
 async function getBadWordsList() {

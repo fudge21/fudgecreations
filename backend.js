@@ -84,9 +84,10 @@ if (window.location.pathname == "/settings/") {
   })
 }
 
-function verifyUsername() {
+async function verifyUsername() {
   const regex = /^[a-z0-9_]+$/;
-  let username = document.querySelector("#username").value
+  const username = document.querySelector("#username").value
+  const moderatedText = await moderateText(username)
   let feedback = "Requirements met"
   if (username.length < 3) {
     feedback = "Must include at least 3 characters in username"
@@ -94,6 +95,8 @@ function verifyUsername() {
     feedback = "Cannot include more than 12 characters in username"
   } else if (!regex.test(username)) {
     feedback = "Only lowercase letters and numbers and underscores are supported in usernames"
+  } else if (moderatedText[1]) {
+    feedback = "Username cannot contain profanity"
   } else {
     return true
   }
@@ -101,9 +104,10 @@ function verifyUsername() {
   return false
 }
 
-function verifyDisplayName() {
+async function verifyDisplayName() {
   const regex = /^[a-zA-Z0-9_ ]+$/;
-  let username = document.querySelector("#username").value
+  const username = document.querySelector("#username").value
+  const moderatedText = await moderateText(username)
   let feedback = "Requirements met"
   if (username.length < 3) {
     feedback = "Must include at least 3 characters in display name"
@@ -111,6 +115,8 @@ function verifyDisplayName() {
     feedback = "Cannot include more than 12 characters in display name"
   } else if (!regex.test(username)) {
     feedback = "Only letters, numbers, underscores, and spaces are supported in display names"
+  } else if (moderatedText[1]) {
+    feedback = "Display name cannot contain profanity"
   } else {
     return true
   }
@@ -121,6 +127,33 @@ function verifyDisplayName() {
 document.querySelector("#next").addEventListener("click", function () {
   verifyUsername()
 })
+
+async function getBadWordsList() {
+  const response = await fetch('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/refs/heads/master/en');
+  if (!response.ok) {
+    throw new Error('Failed to fetch bad words list');
+  }
+  const text = await response.text();
+  return text.split('\n').map(word => word.trim()).filter(word => word); // Trim and filter empty lines
+}
+
+async function moderateText(text) {
+  const bannedWords = await getBadWordsList();
+  let moderatedText = text;
+  let conatinsBadWord = false
+  bannedWords.forEach(word => {
+    const regex = new RegExp(`\\b${word}\\b`, 'gi'); // Match full words only
+    let preText = moderatedText+" "
+    moderatedText = moderatedText.replace(regex, '****'); // Replace banned words with '****'
+    if (preText != moderatedText+" ") {
+      conatinsBadWord = true
+    }
+  });
+
+  return [moderatedText,conatinsBadWord];
+}
+
+
 
 
 // try {

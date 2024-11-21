@@ -1,8 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
-import { getFirestore,  collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-import { GoogleAuthProvider, getAuth, signOut, getRedirectResult, onAuthStateChanged, signInWithRedirect, signInWithPopup, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getFirestore, doc, getDoc, getDocs, setDoc, collection, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { GoogleAuthProvider, updateProfile, getAuth, signOut, getRedirectResult, onAuthStateChanged, signInWithRedirect, signInWithPopup, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -75,6 +75,29 @@ if (window.location.pathname == "/auth/") {
   // document.querySelector("#next").addEventListener("click", function () {
   //   window.location.href = "/"
   // })
+  document.querySelector("#next").addEventListener("click", async function () {
+  if (await verifyUsername() == true) {
+    if (await verifyDisplayName() == true) {
+      if (await isUsernameAvailable(document.querySelector("#username").value)) {
+        document.querySelector("#next").disabled = true
+        await updateProfile(auth.currentUser, {
+          displayName: document.querySelector("#username").value+","+document.querySelector("#displayname").value, 
+        })
+        await saveUsername(auth.currentUser.uid, document.querySelector("#username").value)
+        window.location.href = "/"
+      } else {
+        document.querySelector("#feedback").textContent = "username taken"
+      }
+    }
+  }
+  })
+  onAuthStateChanged(auth, (user) => {
+    if (user && user.displayName != null) {
+      window.location.href = "/"
+    } else {
+      console.log("User not configured");
+    }
+  });
 }
 
 if (window.location.pathname == "/settings/") {
@@ -126,13 +149,7 @@ async function verifyDisplayName() {
   return false
 }
 
-document.querySelector("#next").addEventListener("click", async function () {
-  if (await verifyUsername() == true) {
-    if (await verifyDisplayName() == true) {
-      
-    }
-  }
-})
+
 
 async function getBadWordsList() {
   const response = await fetch('https://raw.githubusercontent.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words/refs/heads/master/en');
@@ -148,7 +165,7 @@ async function moderateText(text) {
   let moderatedText = text;
   let conatinsBadWord = false
   bannedWords.forEach(word => {
-    const regex = new RegExp(`\\b${word}\\b`, 'gi'); // Match full words only
+    const regex = new RegExp(word, 'gi'); // Match full words only
     let preText = moderatedText+" "
     moderatedText = moderatedText.replace(regex, '****'); // Replace banned words with '****'
     if (preText != moderatedText+" ") {
@@ -159,7 +176,24 @@ async function moderateText(text) {
   return [moderatedText,conatinsBadWord];
 }
 
+async function isUsernameAvailable(username) {
+  const db = getFirestore();
+  const usernamesRef = collection(db, "usernames");
+  const q = query(usernamesRef, where("username", "==", username));
 
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.empty; // If query is empty, the username is available
+}
+
+async function saveUsername(userId, username) {
+  const db = getFirestore();
+  const userRef = doc(db, "usernames", userId);
+
+  await setDoc(userRef, {
+    username: username
+  });
+  console.log(`Username "${username}" saved successfully.`);
+}
 
 
 // try {

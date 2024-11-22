@@ -100,6 +100,7 @@ if (window.location.pathname == "/auth/") {
   });
 } else {
   onAuthStateChanged(auth, (user) => {
+    alert(user.displayName)
     if (user && user.displayName == null || user.displayName == "") {
       window.location.href = "/auth/"
     }

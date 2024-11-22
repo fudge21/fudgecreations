@@ -98,7 +98,15 @@ if (window.location.pathname == "/auth/") {
       console.log("User not configured");
     }
   });
+} else {
+  onAuthStateChanged(auth, (user) => {
+    if (user && user.displayName == null) {
+      window.location.href = "/auth/"
+    }
+  });
 }
+
+
 
 if (window.location.pathname == "/settings/") {
   document.querySelector("#signOut").addEventListener("click", function () {

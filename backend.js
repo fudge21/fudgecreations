@@ -181,7 +181,7 @@ async function moderateText(text) {
     moderatedText = moderatedText.replace(regex, '****'); // Replace banned words with '****'
     if (preText != moderatedText+" ") {
       conatinsBadWord = true
-    }
+    } 
   });
 
   return [moderatedText,conatinsBadWord];

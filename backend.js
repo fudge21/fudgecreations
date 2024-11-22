@@ -92,7 +92,7 @@ if (window.location.pathname == "/auth/") {
   }
   })
   onAuthStateChanged(auth, (user) => {
-    if (user && user.displayName != null) {
+    if (user && user.displayName != null && user.displayName.includes(",")) {
       window.location.href = "/"
     } else {
       console.log("User not configured");
@@ -101,7 +101,7 @@ if (window.location.pathname == "/auth/") {
 } else {
   onAuthStateChanged(auth, (user) => {
     alert(user.displayName)
-    if (user && user.displayName == null || user.displayName == "") {
+    if (user && !user.displayName.includes(",") && user.displayName == null || user.displayName == "") {
       window.location.href = "/auth/"
     }
   });

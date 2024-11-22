@@ -100,9 +100,11 @@ if (window.location.pathname == "/auth/") {
   });
 } else {
   onAuthStateChanged(auth, (user) => {
-    alert(user.displayName)
-    if (user && !user.displayName.includes(",") && user.displayName == null || user.displayName == "") {
-      window.location.href = "/auth/"
+    if (user) {
+      let displayName = user.displayName || ""
+      if (displayName.includes(",") == false) {
+        window.location.href = "/auth/"
+      }
     }
   });
 }

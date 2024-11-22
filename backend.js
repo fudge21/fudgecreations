@@ -125,8 +125,8 @@ async function verifyUsername() {
   let feedback = "Requirements met"
   if (username.length < 3) {
     feedback = "Must include at least 3 characters in username"
-  } else if (username.length > 12) {
-    feedback = "Cannot include more than 12 characters in username"
+  } else if (username.length > 16) {
+    feedback = "Cannot include more than 16 characters in username"
   } else if (!regex.test(username)) {
     feedback = "Only lowercase letters and numbers and underscores are supported in usernames"
   } else if (moderatedText[1]) {
@@ -146,8 +146,8 @@ async function verifyDisplayName() {
   let feedback = "Requirements met"
   if (username.length < 3) {
     feedback = "Must include at least 3 characters in display name"
-  } else if (username.length > 12) {
-    feedback = "Cannot include more than 12 characters in display name"
+  } else if (username.length > 16) {
+    feedback = "Cannot include more than 16 characters in display name"
   } else if (!regex.test(username)) {
     feedback = "Only letters, numbers, underscores, and spaces are supported in display names"
   } else if (moderatedText[1]) {

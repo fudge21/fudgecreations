@@ -219,7 +219,7 @@ async function saveUsername(userId, username) {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    
+    document.cookie = "firebase-auth=true; domain=fudgecreations.com; path=/";
     if (window.location.pathname == "/auth/") {
       document.querySelector("#signin").style.display = "none"
       document.querySelector("#userinfo").style.display = "block"

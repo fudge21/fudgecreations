@@ -219,6 +219,10 @@ async function saveUsername(userId, username) {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
+    auth.currentUser.getIdToken(/* forceRefresh */ true).then((idToken) => {
+      // Send this ID token to the subdomain
+      localStorage.setItem("firebaseAuthToken", idToken); // Store it locally
+    });
     document.cookie = "firebase-auth=true; domain=fudgecreations.com; path=/";
     if (window.location.pathname == "/auth/") {
       document.querySelector("#signin").style.display = "none"
@@ -240,3 +244,10 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+console.warn(`
+  \\   /\\  / /\\  [] |\\ | 0 |\\ | []
+   \\_/  \\/ /--\\ |\\ | \\| | | \\| _/
+____________________________________
+
+   DO NOT PASTE CODE IN HERE UNDER ANY CURCUMSTANCES. CODE CAN ACCESS VITAL USER AND LOG IN DATA THAT MAY RISK YOUR ACCOUNT BEING HACKED.
+  `);

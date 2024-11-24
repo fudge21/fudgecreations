@@ -219,11 +219,6 @@ async function saveUsername(userId, username) {
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    auth.currentUser.getIdToken(/* forceRefresh */ true).then((idToken) => {
-      // Send this ID token to the subdomain
-      localStorage.setItem("firebaseAuthToken", idToken); // Store it locally
-    });
-    document.cookie = "firebase-auth=true; domain=fudgecreations.com; path=/";
     if (window.location.pathname == "/auth/") {
       document.querySelector("#signin").style.display = "none"
       document.querySelector("#userinfo").style.display = "block"

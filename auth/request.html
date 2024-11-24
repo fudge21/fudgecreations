@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fudge Creations Auth Service</title>
+</head>
+<body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-analytics.js";
+        import { getFirestore, doc, getDoc, getDocs, setDoc, collection, query, where } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        import { GoogleAuthProvider, updateProfile, getAuth, signOut, getRedirectResult, onAuthStateChanged, signInWithRedirect, signInWithPopup, createUserWithEmailAndPassword, GithubAuthProvider, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyAzjNenZXk2gKXSu-6B6uW9DlpdoP06RUc",
+            authDomain: "fudge-creations.firebaseapp.com",
+            projectId: "fudge-creations",
+            storageBucket: "fudge-creations.appspot.com",
+            messagingSenderId: "949875472904",
+            appId: "1:949875472904:web:65df5a963f56b0185a6fbd",
+            measurementId: "G-EV3NG45468",
+            cookies: {
+                domain: '.fudgecreations.com',
+            },
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app)
+        const googleProvider = new GoogleAuthProvider();
+        const githubProvider = new GithubAuthProvider();
+
+        const auth = getAuth();
+
+        auth.useDeviceLanguage()
+        const urlParams = new URLSearchParams(window.location.search);
+        const requestSite = urlParams.get("requestsite");
+        if (requestSite == "pg") {
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    auth.currentUser.getIdToken(/* forceRefresh */ true).then((idToken) => {
+
+                        window.location.href = `https://posiglow.fudgecreations.com?authtoken=${idToken}`;
+                    });
+                } else {
+                    window.location.href = "/auth/"
+                }
+            });
+        }
+    </script>
+</body>
+</html>
